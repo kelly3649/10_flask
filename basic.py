@@ -10,7 +10,14 @@ c = db.cursor()    #facilitate db ops
 
 sum = 0
 
-c.execute("SELECT courses.mark FROM courses where id = 1")
+
+q = """
+SELECT courses.mark 
+FROM courses
+WHERE id = 1
+"""
+c.execute(q)
+
 
 l = c.fetchall() 
 print l[1] + 1

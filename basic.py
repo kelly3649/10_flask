@@ -1,6 +1,12 @@
 import sqlite3   #enable control of an sqlite database
 import csv       #facilitates CSV I/O
 
+def average( tup ):
+    sum = 0;
+    for t in tup:
+        sum += t[0]
+
+    return sum / len(tup)
 
 
 f="discobandit.db"
@@ -12,13 +18,24 @@ sum = 0
 
 
 q = """
-SELECT courses.mark 
-FROM courses
-WHERE id = 1
+SELECT id 
+FROM students
 """
 c.execute(q)
 
+idList = c.fetchall() 
 
-l = c.fetchall() 
-print l
-print l[0][0] + 1
+for id in idList:
+    q = """
+    SELECT mark 
+    FROM courses
+    WHERE id = %d
+    """ % (id)
+    c.execute(q)
+    marks = c.fetchall()
+    print average( marks )
+    
+    #what do we do w it now
+
+
+

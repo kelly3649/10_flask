@@ -25,15 +25,25 @@ c.execute(q)
 
 idList = c.fetchall() 
 
+print "name | id | average"
+
 for id in idList:
     q = """
     SELECT mark 
     FROM courses
     WHERE id = %d
-    """ % (id)
+    """ % (id[0])
     c.execute(q)
     marks = c.fetchall()
-    print average( marks )
+
+    q = """
+    SELECT name 
+    FROM students
+    WHERE id = %d
+    """ % (id[0])
+    c.execute(q)
+    name = c.fetchall()[0][0]
+    print "%s | %d | %d" %(name, id[0], average( marks ))
     
     #what do we do w it now
 

@@ -25,7 +25,12 @@ c.execute(q)
 
 idList = c.fetchall() 
 
-print "name | id | average"
+e = "\033[32m"
+clear = "\033[0m"
+f = "\033[35m"
+g = "\033[34m"
+
+print "%sname%s | %sid%s | %saverage%s\n___________________" % (e, clear, f, clear, g, clear)
 
 for id in idList:
     q = """
@@ -43,7 +48,7 @@ for id in idList:
     """ % (id[0])
     c.execute(q)
     name = c.fetchall()[0][0]
-    print "%s | %d | %d" %(name, id[0], average( marks ))
+    print "%s%s%s | %s%d%s | %s%d%s" %(e, name, clear, f, id[0], clear, g, average( marks ), clear)
     
     #what do we do w it now
 

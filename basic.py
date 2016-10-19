@@ -20,4 +20,5 @@ c.execute(q)
 
 
 l = c.fetchall() 
-print l[1] + 1
+print l
+print l[0][0] + 1
